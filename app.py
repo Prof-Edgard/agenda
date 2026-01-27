@@ -1,5 +1,22 @@
-from flask import Flask
+from flask import Flask, render_template, request
+from models.tarefa import Tarefa
 
 app = Flask(__name__)
 
-@app.route()
+@app.route ('/')
+def inicio():
+    return render_template("inicio.html", titulo="Bem-vindo")
+    
+@app.route('/agenda', methods=['GET', 'POST'])
+def agenda():
+    tarefa = None
+    if request.method == 'POST':
+        titulo_tarefa = request.form['titulo-tarefa']
+        data_conclusao = request.form['data-conclusao']
+        tarefa = Tarefa(titulo_tarefa, data_conclusao)
+    
+    return render_template('agenda.html', titulo='Agenda', tarefa=tarefa)
+
+@app.route('/ola')
+def ola_mundo():
+    return "Olá, mundo!"
