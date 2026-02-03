@@ -10,7 +10,7 @@ class Database:
                 id INTEGER PRIMARY KEY AUTOINCREMENT, 
                 titulo_tarefa TEXT NOT NULL,
                 data_conclusao TEXT);
-                ''')
+        ''')
 
     def executar(self, query: str, params: tuple = ()) -> Cursor:
         self.cursor.execute(query, params)

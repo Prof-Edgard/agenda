@@ -2,17 +2,42 @@
 
 {% block content %}
     <form method="POST">
-        <input type="text" name="titulo-tarefa"
+        <div class="mb-3">
+            <label for="titulo-tarefa" class="form-label">Título da tarefa</label>
+            <input type="text" class="form-control" name="titulo-tarefa" id="titulo-tarefa" aria-describedby="ajudaNomeTarefa" required>
+            <div id="ajudaNomeTarefa" class="form-text">Use um nome de tarefa que seja descritivo</div>
+        </div>
+       <!-- <input type="text" name="titulo-tarefa"
             id="titulo-tarefa" placeholder="Título da tarefa"
-        required>
+        required> -->
+
+        <div class="mb-3">
+            <label for="data-conclusao" class="form-label">Data de conclusão</label>
+            <input type="date" class="form-control" name="data-conclusao" id="data-conclusao">
+        </div>
+        <!--<div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
 
         <input type="date" name="data-conclusao"
-            id="data-conclusao">
+            id="data-conclusao"> -->
 
-        <button type="submit">Adicionar</button>
+        <button type="submit" class="btn btn-primary">Adicionar</button>
     </form>
 
-    <p>{{ tarefa.titulo_tarefa}} - {{tarefa.data_conclusao }}</p>
+    <h2>Lista de Tarefas</h2>
+
+    {% if tarefas %}
+        <ul>
+            {% for tarefa in tarefas %}
+                <li>{{ tarefa.titulo_tarefa}} - {{tarefa.data_conclusao }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma tarefa cadastrada</p>
+    {% endif %}
 
 {% endblock %}
 
