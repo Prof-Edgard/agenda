@@ -3,6 +3,7 @@ from typing import  Any, Optional
 from types import TracebackType
 from sqlite3 import Cursor
 import traceback
+
 class Tarefa:
     def __init__(self, titulo_tarefa: Optional[str], 
                  data_conclusao: Optional[str] = None, 
@@ -32,9 +33,9 @@ class Tarefa:
     @staticmethod
     def obter_tarefas() -> list[Any]:
         with Database('./data/tarefas.sqlite3') as db:
-            query: str = 'SELECT titulo_tarefa, data_conclusao FROM tarefas;'
+            query: str = 'SELECT titulo_tarefa, data_conclusao, id FROM tarefas;'
             resultados: list[Any] = db.buscar_tudo(query)
-            tarefas: list[Any] = [Tarefa(titulo, data) for titulo, data in resultados]
+            tarefas: list[Any] = [Tarefa(titulo, data, id) for titulo, data, id in resultados]
             return tarefas
         
     def excluir_tarefa(self) -> Cursor:
