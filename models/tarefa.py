@@ -1,11 +1,16 @@
 from models.database import Database
-from typing import  Any
+from typing import  Any, Optional
+from types import TracebackType
 from sqlite3 import Cursor
+import traceback
 class Tarefa:
-    def __init__(self, titulo_tarefa: str = None, data_conclusao: str = None, id_tarefa: int = None) -> None:
-        self.titulo_tarefa: str = titulo_tarefa
-        self.data_conclusao: str = data_conclusao
-        self.id_tarefa: int = id_tarefa
+    def __init__(self, titulo_tarefa: Optional[str], 
+                 data_conclusao: Optional[str] = None, 
+                 id_tarefa: Optional[int] = None
+                 ) -> None:
+        self.titulo_tarefa: Optional[str] = titulo_tarefa
+        self.data_conclusao: Optional[str] = data_conclusao
+        self.id_tarefa: Optional[int] = id_tarefa
     
 
     @classmethod
